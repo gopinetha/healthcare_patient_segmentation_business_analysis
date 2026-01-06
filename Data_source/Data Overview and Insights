@@ -1,0 +1,125 @@
+#	Data Source & Understanding
+
+## Source of the Data
+
+This project uses healthcare simulation data sourced from Emergency Room Simulation-Inspired Data available on OpenDataBay:
+
+👉 Emergency Room Simulation-Inspired Data
+🔗 https://www.opendatabay.com/data/healthcare/48a3cbc8-e1ab-4b9c-af06-dbf9b0ebadd6
+
+The dataset is designed to model hospital emergency room visits with synthetic or de-identified records suitable for analytics and operational research. It does not contain personally identifiable information (PII) and may be used for analytical and educational purposes.
+
+📂 Purpose of the Dataset
+
+The dataset represents historical emergency room simulations and contains information useful for:
+
+Analyzing patient flow patterns
+
+Identifying utilization clusters
+
+Supporting operational decision-making
+
+Evaluating healthcare resource needs
+
+In this project, the dataset is used to understand and segment patients based on visit behavior and usage patterns to support operational improvements.
+
+
+
+##  🧠 What the Data Represents
+
+Each record in the dataset correlates with a simulated patient visit history, capturing attributes related to:
+
+The number and frequency of visits
+
+Time between visits
+
+Visit duration
+
+Patient characteristics relevant to clustering
+
+This structure allows us to apply techniques such as K-Means and DBSCAN clustering to find distinct patient behavior segments.
+
+
+
+## Key Parameters in the Dataset
+
+Below is a table outlining the major fields in the data and their business relevance:
+
+Field Name		Description			Business Relevance
+Patient_ID		Anonymized patient identifier	Tracks unique patients for grouping
+Arrival_Time		Timestamp of patient arrival	Used to calculate visit frequency
+Departure_Time		Timestamp of leaving ER		Allows computation of visit durations
+Visit_Duration		Time spent in ER (derived)	Indicates operational load per visit
+Total_Visits		Count of visits (derived)	Key metric for segmentation
+Days_Between_Visits	Average days between visits	Indicator of visit behavior patterns
+Priority_Level		Severity code/triage category	May differentiate patient urgency
+Other_Attributes	Additional simulation variables	Used for deeper pattern analysis
+
+Note: Some attributes are derived during preprocessing (e.g., Visit_Duration, Total_Visits, Days_Between_Visits) based on original dataset fields.
+
+
+
+## Data Characteristics
+Type
+
+Structured tabular data
+
+Format
+
+CSV or equivalent tabular format (loaded into a DataFrame)
+
+Granularity
+
+Each row represents a single patient or visit entity, depending on preprocessing
+
+Use Case in This Project
+
+This project uses clustering on visit metrics to find:
+
+Frequently returning patients
+
+Normal utilization groups
+
+Anomalous or outlier patterns
+
+Subgroups that may indicate operational concerns
+
+
+
+##🧹 Data Preparation Steps
+
+To ensure high-quality analysis, the following preprocessing was performed:
+
+Missing Value Handling: Removed or imputed blank fields
+
+Derived Metrics: Calculated visit duration, total visits, days between visits
+
+Feature Scaling: Standardized numerical values for clustering
+
+Outlier Screening: Identified extreme values that could distort clusters
+
+This preparation ensured the data was suitable for applying unsupervised learning techniques for segmentation.
+
+
+
+## Why These Fields Matter
+
+Each parameter contributes to understanding patient behavior differently:
+
+Arrival and visit frequency: Identifies patients who use the ER frequently
+
+Visit duration: Suggests complexity of care or system strain
+
+Days between visits: Separates periodic vs sporadic utilization
+
+Priority levels: Helps characterize patient urgency and potential resource needs
+
+Together, these help identify:
+
+High utilization cohorts
+
+Routine or low-impact patients
+
+Anomalous or unusual patterns
+
+These insights can inform staffing, scheduling, and resource allocation — essential for healthcare operations.
